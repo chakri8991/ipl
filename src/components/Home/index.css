@@ -1,0 +1,25 @@
+/* Write your CSS here */
+.HomeDiv {
+  background-image: url('https://assets.ccbp.in/frontend/react-js/ipl-dashboard-lg-bg.png');
+  background-size: cover;
+  /* height: 100vh; */
+  text-align: center;
+  color: white;
+}
+
+.headingDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.iplLogo {
+  height: 40px;
+}
+
+.teamsDiv {
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+}

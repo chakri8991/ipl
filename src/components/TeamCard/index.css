@@ -1,0 +1,13 @@
+/* Write your CSS here */
+.teamLogo {
+  height: 100px;
+}
+
+.teamDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 50vw;
+  background-color: transparent;
+}

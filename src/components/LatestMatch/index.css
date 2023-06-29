@@ -1,0 +1,14 @@
+/* Write your CSS here */
+.teamDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #1e293b;
+  width: 100vw;
+  color: white;
+  font-size: 10px;
+}
+
+.teamImg {
+  width: 100vw;
+}
