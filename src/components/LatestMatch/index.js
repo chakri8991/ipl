@@ -15,29 +15,31 @@ class LatestMatch extends Component {
       result,
       secondInnings,
       umpires,
+      venue,
     } = latestMatch
     return (
-      <div className="teamDiv">
-        {/* <img src={teamImageUrl} alt={id} className="teamLogo" /> */}
-
+      <div className="latestMatchStyle">
         <div>
-          <h1>{competingTeam}</h1>
+          <p>{competingTeam}</p>
           <p>{date}</p>
+          <p>{venue}</p>
           <p>{result}</p>
           <p>{matchStatus}</p>
         </div>
-        <img src={competingTeamLogo} alt="team" />
         <div>
-          <h1>First Innings</h1>
+          <img src={competingTeamLogo} alt={`latest match ${competingTeam}`} />
+        </div>
+        <div>
+          <p>First Innings</p>
           <p>{firstInnings}</p>
 
-          <h1>Second Innings</h1>
+          <p>Second Innings</p>
           <p>{secondInnings}</p>
 
-          <h1>Man Of the Match</h1>
+          <p>Man Of the Match</p>
           <p>{manOfTheMatch}</p>
 
-          <h1>Umpire</h1>
+          <p>Umpire</p>
           <p>{umpires}</p>
         </div>
       </div>

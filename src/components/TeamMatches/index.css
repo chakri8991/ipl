@@ -1,4 +1,16 @@
 /* Write your CSS here */
 .teamImg {
   width: 100vw;
+  height: 30vh;
+  margin: 10px;
+}
+
+.teamMatchesStyle {
+  background-image: linear-gradient(to bottom, #1e293b, #d91c1f, #a4261d);
+}
+
+.teamMatchUlStyle {
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
 }

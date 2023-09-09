@@ -2,12 +2,16 @@
 import {Component} from 'react'
 // import {Link} from 'react-router-dom'
 
+import Loader from 'react-loader-spinner'
+
 import LatestMatch from '../LatestMatch'
 
 import MatchCard from '../MatchCard'
 
+import './index.css'
+
 class TeamMatches extends Component {
-  state = {teamBanner: '', latestMatch: '', recentMatches: ''}
+  state = {teamBanner: '', latestMatch: '', recentMatches: [], isLoading: true}
 
   componentDidMount() {
     this.getSpecificTeam()
@@ -19,11 +23,10 @@ class TeamMatches extends Component {
     const {params} = match
 
     const {id} = params
-    // console.log(id)
     const response = await fetch(`https://apis.ccbp.in/ipl/${id}`)
     const data = await response.json()
-    console.log(data)
     const latestMatchDetails = data.latest_match_details
+    console.log(latestMatchDetails)
     const updateLatestMatch = {
       competingTeam: latestMatchDetails.competing_team,
       competingTeamLogo: latestMatchDetails.competing_team_logo,
@@ -35,24 +38,46 @@ class TeamMatches extends Component {
       result: latestMatchDetails.result,
       secondInnings: latestMatchDetails.second_innings,
       umpires: latestMatchDetails.umpires,
+      venue: latestMatchDetails.venue,
     }
     this.setState({
       teamBanner: data.team_banner_url,
       latestMatch: updateLatestMatch,
       recentMatches: data.recent_matches,
+      isLoading: false,
     })
   }
 
+  renderLoader = () => (
+    <div data-testid="loader">
+      <Loader type="Oval" color="#ffffff" height={50} />
+    </div>
+  )
+
   render() {
-    const {teamBanner, latestMatch, recentMatches} = this.state
-    console.log(recentMatches)
+    const {teamBanner, latestMatch, recentMatches, isLoading} = this.state
+
     return (
       <div>
-        <img className="teamImg" src={teamBanner} alt="teamLogo" />
-        <LatestMatch latestMatch={latestMatch} />
-        {/* {recentMatches.map(e => (
-          <MatchCard EachMatch={e} key={e.id} />
-        ))} */}
+        {isLoading ? (
+          this.renderLoader()
+        ) : (
+          <div className="teamMatchesStyle">
+            <img className="teamImg" src={teamBanner} alt="team banner" />
+            <LatestMatch latestMatch={latestMatch} />
+            <ul className="teamMatchUlStyle">
+              {recentMatches.map(e => (
+                <MatchCard
+                  competingTeam={e.competing_team}
+                  competingTeamLogo={e.competing_team_logo}
+                  matchStatus={e.match_status}
+                  result={e.result}
+                  key={e.id}
+                />
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     )
   }

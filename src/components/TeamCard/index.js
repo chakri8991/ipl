@@ -10,12 +10,12 @@ class TeamCard extends Component {
     const {eachTeam} = this.props
     const {name, teamImageUrl, id} = eachTeam
     return (
-      <Link to={`/team-matches/${id}`}>
-        <div className="teamDiv">
-          <img src={teamImageUrl} alt={id} className="teamLogo" />
-          <h1>{name}</h1>
-        </div>
-      </Link>
+      <li className="teamDi">
+        <Link to={`/team-matches/${id}`} className="teamslinks">
+          <img src={teamImageUrl} alt={name} className="teamLogo" />
+          <p>{name}</p>
+        </Link>
+      </li>
     )
   }
 }

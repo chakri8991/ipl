@@ -6,15 +6,22 @@ import './index.css'
 
 class MatchCard extends Component {
   render() {
-    const {EachMatch} = this.props
-    const {competingTeam, competingTeamLogo, matchStatus, result} = EachMatch
+    const {competingTeam, competingTeamLogo, matchStatus, result} = this.props
+    const getMatchStatus = status =>
+      status === 'Won' ? 'match-won' : 'match-lost'
+    const matchStatusClass = `match-status  ${getMatchStatus(matchStatus)}`
     return (
-      <div className="teamDiv">
-        <img src={competingTeamLogo} alt={competingTeam} />
-        <h1>{competingTeam}</h1>
-        <p>{matchStatus}</p>
-        <p>{result}</p>
-      </div>
+      <li className="matchCardStyle">
+        <div>
+          <img
+            src={competingTeamLogo}
+            alt={`competing team ${competingTeam}`}
+          />
+          <p>{competingTeam}</p>
+          <p>{result}</p>
+          <p className={matchStatusClass}>{matchStatus}</p>
+        </div>
+      </li>
     )
   }
 }
